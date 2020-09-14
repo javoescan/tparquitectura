@@ -41,3 +41,4 @@ Principales funciones:
 |POST|/products|{ name, description, price }|
 |PUT|/products|{ id, name, description, price }|
 |DELETE|/products/:id|N/A|
+|GET|/sales/user/:id/comissions?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
