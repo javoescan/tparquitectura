@@ -42,3 +42,5 @@ Principales funciones:
 |PUT|/products|{ id, name, description, price }|
 |DELETE|/products/:id|N/A|
 |GET|/sales/user/:id/comissions?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
+
+** NOTA: Todos los endpoints esperarán por el Authorization Header el JWT correspondiente
