@@ -23,6 +23,8 @@ Principales funciones:
 - Obtener comisiones de un vendedor 
 - Reportes mensuales de comisiones
 
+<br>
+
 #### Endpoints
 |Método|Endpoint|Body|
 |---|---|---|
