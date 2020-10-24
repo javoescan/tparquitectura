@@ -3,6 +3,8 @@
     "id": "aaaaaa-bbbbbbb-ccccccc-ddddddd",
     "firstname": "Pepe",
     "lastname": "Gonzalez",
-    "document": "43152687"
+    "document": "43152687",
+    "email": "pepegonzalez@gmail.com",
+    "role": "1"
   }
 ]
