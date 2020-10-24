@@ -1,0 +1,26 @@
+{
+  "name": "tp-arquitectura",
+  "version": "1.0.0",
+  "description": "Trabajo Practico Arquitectura Web - 2C 2020 UP",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javoescan/tparquitectura.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javoescan/tparquitectura/issues"
+  },
+  "homepage": "https://github.com/javoescan/tparquitectura#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
