@@ -31,8 +31,8 @@ Principales funciones:
 |GET|/users|N/A|Done
 |GET|/users/:id|N/A|Done
 |POST|/users|{ email, firstName, lastName, document, role }|Done
-|PUT|/users|{ id, email, firstName, lastName, document, role }|
-|DELETE|/users/:id|N/A|
+|PUT|/users|{ id, email, firstName, lastName, document, role }|Done
+|DELETE|/users/:id|N/A|Done
 |GET|/sales/:id|N/A|
 |GET|/sales/user/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
 |GET|/sales/product/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|

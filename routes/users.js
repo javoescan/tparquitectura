@@ -49,4 +49,13 @@ router.put('/:id', (req, res) => {
   updated ? res.send(updated) : res.status(400).send("Bad request");
 });
 
+router.delete('/:id', (req, res) => {
+  if (!req.params.id) {
+    res.status(400).send("Params not defined");
+    return;
+  }
+  const deleted = usersService.delete(req.params.id);
+  deleted ? res.send("Deleted") : res.status(400).send("Bad request");
+});
+
 module.exports = router;

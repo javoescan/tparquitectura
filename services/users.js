@@ -33,6 +33,16 @@ class UsersService {
         fs.writeFileSync('mocks/users.json', JSON.stringify(users));
         return user;
     }
+
+    delete = id => {
+        const userIndex = users.findIndex(pUser => pUser.id === id);
+        if (userIndex === -1) {
+            return null;
+        }
+        users.splice(userIndex, 1);
+        fs.writeFileSync('mocks/users.json', JSON.stringify(users));
+        return true;
+    }
 }
 
 module.exports = new UsersService();
