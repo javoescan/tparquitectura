@@ -26,9 +26,10 @@ Principales funciones:
 <br>
 
 #### Endpoints
-|Método|Endpoint|Body|
-|---|---|---|
-|GET|/users/:id|N/A|
+|Método|Endpoint|Body|Status|
+|---|---|---|---|
+|GET|/users|N/A|Done
+|GET|/users/:id|N/A|Done
 |POST|/users|{ email, firstName, lastName, document, role }|
 |PUT|/users|{ id, email, firstName, lastName, document, role }|
 |DELETE|/users/:id|N/A|
@@ -44,5 +45,3 @@ Principales funciones:
 |PUT|/products|{ id, name, description, price }|
 |DELETE|/products/:id|N/A|
 |GET|/sales/user/:id/comissions?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
-
-** NOTA: Todos los endpoints esperarán por el Authorization Header el JWT correspondiente
