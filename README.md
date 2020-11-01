@@ -30,7 +30,7 @@ Principales funciones:
 |---|---|---|---|
 |GET|/users|N/A|Done
 |GET|/users/:id|N/A|Done
-|POST|/users|{ email, firstName, lastName, document, role }|
+|POST|/users|{ email, firstName, lastName, document, role }|Done
 |PUT|/users|{ id, email, firstName, lastName, document, role }|
 |DELETE|/users/:id|N/A|
 |GET|/sales/:id|N/A|
