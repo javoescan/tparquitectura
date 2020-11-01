@@ -3,6 +3,8 @@ const fs = require('fs');
 const users = require('../mocks/users.json');
 
 class UsersService {
+    fields = ["email", "firstName", "lastName", "document", "role"];
+
     getAll = () => {
         return users.id;
     }
@@ -18,6 +20,16 @@ class UsersService {
         }
         user.id = uuidv4();
         users.push(user);
+        fs.writeFileSync('mocks/users.json', JSON.stringify(users));
+        return user;
+    }
+
+    update = user => {
+        const userIndex = users.findIndex(pUser => pUser.id === user.id);
+        if (userIndex === -1) {
+            return null;
+        }
+        users[userIndex] = user;
         fs.writeFileSync('mocks/users.json', JSON.stringify(users));
         return user;
     }

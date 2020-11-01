@@ -1,4 +1,5 @@
 const express = require('express');
+const validateParams = require('../helpers/validator');
 const router = express.Router();
 
 const usersService = require('../services/users');
@@ -16,7 +17,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('', (req, res) => {
-  if (!req.body || !req.body.email || !req.body.firstName || !req.body.lastName || !req.body.document || !req.body.role) {
+  if (!req.body || !validateParams(req.body, usersService.fields)) {
     res.status(400).send("Params not defined");
     return;
   }
@@ -29,6 +30,23 @@ router.post('', (req, res) => {
   };
   const created = usersService.create(user);
   created ? res.send(created) : res.status(400).send("User already exists");
+});
+
+router.put('/:id', (req, res) => {
+  if (!req.params.id || !req.body || !validateParams(req.body, usersService.fields)) {
+    res.status(400).send("Params not defined");
+    return;
+  }
+  const user = {
+    id: req.params.id,
+    email: req.body.email,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    document: req.body.document,
+    role: req.body.role,
+  };
+  const updated = usersService.update(user);
+  updated ? res.send(updated) : res.status(400).send("Bad request");
 });
 
 module.exports = router;
