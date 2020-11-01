@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
   const user = usersService.get(req.params.id);
   user ? 
     res.send(user)
-    : res.status(404).send("User not found");
+    : res.status(400).send("User not found");
 });
 
 router.post('', (req, res) => {

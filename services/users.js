@@ -6,7 +6,7 @@ class UsersService {
     fields = ["email", "firstName", "lastName", "document", "role"];
 
     getAll = () => {
-        return users.id;
+        return users;
     }
 
     get = id => {
