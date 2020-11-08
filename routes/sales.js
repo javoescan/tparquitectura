@@ -35,6 +35,13 @@ router.get("/product/:productId", (req, res) => {
   res.send(sales);
 });
 
+router.get("/user/:userId/comissions", (req, res) => {
+  const fromDate = req.query.from_date;
+  const toDate = req.query.to_date;
+  const comissions = salesService.getComissionsByUser(req.params.userId, fromDate, toDate);
+  comissions ? res.send(comissions.toString()) : res.status(400).send("User doesn't exist");
+});
+
 router.post("", (req, res) => {
   if (!req.body || !validateParams(req.body, salesService.fields) || !validateCollectionParams(req.body.products, salesService.productFields)) {
     res.status(400).send("Params not defined");

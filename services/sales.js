@@ -39,6 +39,25 @@ class SalesService {
     return sales.find(sale => sale.id === id);
   }
 
+  getComissionsByUser = (userId, fromDate, toDate) => {
+    const userExists = usersService.get(userId);
+    if (!userExists) {
+      return null;
+    }
+    let sales = [];
+    if (fromDate && toDate) {
+      sales = this.getAllBetweenDates(fromDate, toDate);
+      sales = sales.filter(sale => sale.userId === userId);
+    } else {
+      sales = this.getAllByUser(userId);
+    }
+    let comissions = 0;
+    sales.forEach(sale => {
+      comissions += sale.totalPrice * 0.1;
+    });
+    return comissions;
+  }
+
   create = sale => {
     const dataErrorMessage = this.dataErrorMessage(sale);
     if (dataErrorMessage) {
