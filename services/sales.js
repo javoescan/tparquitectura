@@ -13,6 +13,28 @@ class SalesService {
     return sales;
   }
 
+  getAllBetweenDates = (fromDate, toDate) => {
+    const from = Date.parse(fromDate);
+    const to = Date.parse(toDate);
+    return sales.filter(sale => sale.date > from && sale.date < to);
+  }
+
+  getAllByUser = userId => {
+    return sales.filter(sale => sale.userId === userId);
+  }
+
+  getAllByProduct = productId => {
+    return sales.filter(sale => {
+      let matches = false;
+      sale.products.forEach(product => {
+        if (product.id === productId) {
+          matches = true;
+        }
+      });
+      return matches;
+    });
+  }
+
   get = id => {
     return sales.find(sale => sale.id === id);
   }

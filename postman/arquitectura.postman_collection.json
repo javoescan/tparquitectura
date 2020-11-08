@@ -219,6 +219,114 @@
 					"response": []
 				},
 				{
+					"name": "GET SALES BY DATE",
+					"request": {
+						"url": {
+							"raw": "http://localhost:3000/sales?from_date=\"2020-11-07\"&to_date=\"2020-11-09\"",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "from_date",
+									"value": "\"2020-11-07\"",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "to_date",
+									"value": "\"2020-11-09\"",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET SALES BY USER",
+					"request": {
+						"url": {
+							"raw": "http://localhost:3000/sales?from_date=\"2020-11-07\"&to_date=\"2020-11-09\"",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "from_date",
+									"value": "\"2020-11-07\"",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "to_date",
+									"value": "\"2020-11-09\"",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET SALES BY PRODUCT",
+					"request": {
+						"url": {
+							"raw": "http://localhost:3000/sales?from_date=\"2020-11-07\"&to_date=\"2020-11-09\"",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sales"
+							],
+							"query": [
+								{
+									"key": "from_date",
+									"value": "\"2020-11-07\"",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "to_date",
+									"value": "\"2020-11-09\"",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
 					"name": "GET SALE",
 					"request": {
 						"url": "http://localhost:3000/sales/aaaaaa-bbbbbbb-ccccccc-ddddddd",

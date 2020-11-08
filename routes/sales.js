@@ -7,7 +7,14 @@ const router = express.Router();
 const salesService = require("../services/sales");
 
 router.get("/", (req, res) => {
-  const sales = salesService.getAll();
+  const fromDate = req.query.from_date;
+  const toDate = req.query.to_date;
+  let sales = [];
+  if (fromDate && toDate) {
+    sales = salesService.getAllBetweenDates(fromDate, toDate);
+  } else {
+    sales = salesService.getAll();
+  }
   res.send(sales);
 });
 
@@ -16,6 +23,16 @@ router.get("/:id", (req, res) => {
   sale ? 
     res.send(sale)
     : res.status(400).send("Sale not found");
+});
+
+router.get("/user/:userId", (req, res) => {
+  const sales = salesService.getAllByUser(req.params.userId);
+  res.send(sales);
+});
+
+router.get("/product/:productId", (req, res) => {
+  const sales = salesService.getAllByProduct(req.params.productId);
+  res.send(sales);
 });
 
 router.post("", (req, res) => {

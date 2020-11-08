@@ -35,9 +35,9 @@ Principales funciones:
 |DELETE|/users/:id|N/A|Done
 |GET|/sales|N/A|Done
 |GET|/sales/:id|N/A|Done
-|GET|/sales/user/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
-|GET|/sales/product/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
-|GET|/sales?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
+|GET|/sales/user/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|Done
+|GET|/sales/product/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|Done
+|GET|/sales?from_date="2020-09-09"&to_date="2020-09-09"|N/A|Done
 |POST|/sales|{ products: [{ id, price }], userId, date, totalPrice }|Done
 |PUT|/sales|{ id, products: [{ id, price }], userId, date, totalPrice }|Done
 |DELETE|/sales/:id|N/A|Done
