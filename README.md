@@ -40,8 +40,9 @@ Principales funciones:
 |POST|/sales|{ products: [{ id, price }], userId, date, totalPrice }|
 |PUT|/sales|{ id, products: [{ id, price }], userId, date, totalPrice }|
 |DELETE|/sales/:id|N/A|
-|GET|/products/:id|N/A|
-|POST|/products|{ name, description, price }|
-|PUT|/products|{ id, name, description, price }|
-|DELETE|/products/:id|N/A|
+|GET|/products|N/A|Done
+|GET|/products/:id|N/A|Done
+|POST|/products|{ name, description, price }|Done
+|PUT|/products|{ id, name, description, price }|Done
+|DELETE|/products/:id|N/A|Done
 |GET|/sales/user/:id/comissions?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
