@@ -1,5 +1,6 @@
 const express = require('express');
-const validateParams = require('../helpers/validator');
+const validator = require('../helpers/validator');
+const validateParams = validator.validateParams;
 const router = express.Router();
 
 const productsService = require('../services/products');

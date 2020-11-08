@@ -12,7 +12,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "POST USERS",
+					"name": "POST USER",
 					"request": {
 						"url": "http://localhost:3000/users",
 						"method": "POST",
@@ -54,7 +54,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT USERS",
+					"name": "PUT USER",
 					"request": {
 						"url": "http://localhost:3000/users/aaaaaa-bbbbbbb-ccccccc-ddddddd",
 						"method": "PUT",
@@ -74,7 +74,7 @@
 					"response": []
 				},
 				{
-					"name": "DELETE USERS",
+					"name": "DELETE USER",
 					"request": {
 						"url": "http://localhost:3000/users/d895038b-e299-4315-9026-4f02dae611cb",
 						"method": "DELETE",
@@ -100,7 +100,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "POST PRODUCTS",
+					"name": "POST PRODUCT",
 					"request": {
 						"url": "http://localhost:3000/products",
 						"method": "POST",
@@ -142,7 +142,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT PRODUCTS",
+					"name": "PUT PRODUCT",
 					"request": {
 						"url": "http://localhost:3000/products/aaaaaa-bbbbbbb-ccccccc-ddddddd",
 						"method": "PUT",
@@ -162,9 +162,97 @@
 					"response": []
 				},
 				{
-					"name": "DELETE PRODUCTS",
+					"name": "DELETE PRODUCT",
 					"request": {
-						"url": "http://localhost:3000/products/d895038b-e299-4315-9026-4f02dae611cb",
+						"url": "http://localhost:3000/products/95a072b3-bf61-41c5-b81d-159b3994a734",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sales",
+			"description": "",
+			"item": [
+				{
+					"name": "POST SALE",
+					"request": {
+						"url": "http://localhost:3000/sales",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"products\": [{\"id\":\"aaaaaa-bbbbbbb-ccccccc-ddddddd\", \"price\": 20}],\n\t\"userId\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"date\": 1604855534545,\n\t\"totalPrice\": 500\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET SALES",
+					"request": {
+						"url": "http://localhost:3000/sales",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET SALE",
+					"request": {
+						"url": "http://localhost:3000/sales/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT SALE",
+					"request": {
+						"url": "http://localhost:3000/sales/10c45b55-2716-4dae-9fa2-9c8835e791be",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"products\": [{\"id\":\"aaaaaa-bbbbbbb-ccccccc-ddddddd\", \"price\": 50}],\n\t\"userId\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"date\": 1604855534545,\n\t\"totalPrice\": 100\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE SALE",
+					"request": {
+						"url": "http://localhost:3000/sales/b0ef85e7-58b2-4d63-9843-bd84a609ae18",
 						"method": "DELETE",
 						"header": [
 							{

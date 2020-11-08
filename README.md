@@ -33,13 +33,14 @@ Principales funciones:
 |POST|/users|{ email, firstName, lastName, document, role }|Done
 |PUT|/users|{ id, email, firstName, lastName, document, role }|Done
 |DELETE|/users/:id|N/A|Done
-|GET|/sales/:id|N/A|
+|GET|/sales|N/A|Done
+|GET|/sales/:id|N/A|Done
 |GET|/sales/user/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
 |GET|/sales/product/:id?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
 |GET|/sales?from_date="2020-09-09"&to_date="2020-09-09"|N/A|
-|POST|/sales|{ products: [{ id, price }], userId, date, totalPrice }|
-|PUT|/sales|{ id, products: [{ id, price }], userId, date, totalPrice }|
-|DELETE|/sales/:id|N/A|
+|POST|/sales|{ products: [{ id, price }], userId, date, totalPrice }|Done
+|PUT|/sales|{ id, products: [{ id, price }], userId, date, totalPrice }|Done
+|DELETE|/sales/:id|N/A|Done
 |GET|/products|N/A|Done
 |GET|/products/:id|N/A|Done
 |POST|/products|{ name, description, price }|Done
