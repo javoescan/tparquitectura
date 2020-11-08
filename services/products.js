@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const products = require('../mocks/products.json');
 
-class productsService {
+class ProductsService {
     fields = ["name", "description", "price"];
 
     getAll = () => {
@@ -14,10 +14,6 @@ class productsService {
     }
 
     create = product => {
-        /* const existing = products.find(pProduct => pProduct.name === product.name);
-        if (existing) {
-            return null;
-        } */
         product.id = uuidv4();
         products.push(product);
         fs.writeFileSync('mocks/products.json', JSON.stringify(products));
@@ -45,4 +41,4 @@ class productsService {
     }
 }
 
-module.exports = new productsService();
+module.exports = new ProductsService();
