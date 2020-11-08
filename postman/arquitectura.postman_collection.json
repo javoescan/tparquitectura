@@ -1,0 +1,99 @@
+{
+	"variables": [],
+	"info": {
+		"name": "arquitectura",
+		"_postman_id": "65f042e6-77a4-1da6-8a28-fde0e054764f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"description": "",
+			"item": [
+				{
+					"name": "POST USERS",
+					"request": {
+						"url": "http://localhost:3000/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"javoescan@gmail.com\",\n\t\"firstName\": \"Javier\",\n\t\"lastName\": \"Escandarani\",\n\t\"document\": \"41758557\",\n\t\"role\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET USERS",
+					"request": {
+						"url": "http://localhost:3000/users",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET USER",
+					"request": {
+						"url": "http://localhost:3000/users/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT USERS",
+					"request": {
+						"url": "http://localhost:3000/users/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"email\": \"pepegonzalez@gmail.com\",\n\t\"firstName\": \"Pepe\",\n\t\"lastName\": \"Gonzalez\",\n\t\"document\": \"152343545\",\n\t\"role\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USERS",
+					"request": {
+						"url": "http://localhost:3000/users/d895038b-e299-4315-9026-4f02dae611cb",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
