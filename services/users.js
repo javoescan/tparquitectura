@@ -1,6 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
-const fs = require('fs');
-const users = require('../mocks/users.json');
+const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
+const users = require("../mocks/users.json");
 
 class UsersService {
   fields = ["email", "firstName", "lastName", "document", "role"];
@@ -20,7 +20,7 @@ class UsersService {
     }
     user.id = uuidv4();
     users.push(user);
-    fs.writeFileSync('mocks/users.json', JSON.stringify(users));
+    fs.writeFileSync("mocks/users.json", JSON.stringify(users));
     return user;
   }
 
@@ -30,7 +30,7 @@ class UsersService {
       return null;
     }
     users[userIndex] = user;
-    fs.writeFileSync('mocks/users.json', JSON.stringify(users));
+    fs.writeFileSync("mocks/users.json", JSON.stringify(users));
     return user;
   }
 
@@ -40,7 +40,7 @@ class UsersService {
       return null;
     }
     users.splice(userIndex, 1);
-    fs.writeFileSync('mocks/users.json', JSON.stringify(users));
+    fs.writeFileSync("mocks/users.json", JSON.stringify(users));
     return true;
   }
 }

@@ -1,8 +1,8 @@
-const { v4: uuidv4 } = require('uuid');
-const fs = require('fs');
-const sales = require('../mocks/sales.json');
-const usersService = require('./users');
-const productsService = require('./products');
+const { v4: uuidv4 } = require("uuid");
+const fs = require("fs");
+const sales = require("../mocks/sales.json");
+const usersService = require("./users");
+const productsService = require("./products");
 
 class SalesService {
   fields = ["products", "userId", "date", "totalPrice"];
@@ -26,7 +26,7 @@ class SalesService {
     }
     sale.id = uuidv4();
     sales.push(sale);
-    fs.writeFileSync('mocks/sales.json', JSON.stringify(sales));
+    fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
     return {
       sale,
     };
@@ -44,7 +44,7 @@ class SalesService {
       };
     }
     sales[saleIndex] = sale;
-    fs.writeFileSync('mocks/sales.json', JSON.stringify(sales));
+    fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
     return {
       sale,
     };
@@ -56,21 +56,21 @@ class SalesService {
       return null;
     }
     sales.splice(saleIndex, 1);
-    fs.writeFileSync('mocks/sales.json', JSON.stringify(sales));
+    fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
     return true;
   }
 
   dataErrorMessage = sale => {
-    let message = '';
+    let message = "";
     sale.products.forEach(product => {
       const exists = productsService.get(product.id);
       if (!exists) {
-        message += `Product ${product.id} doesn't exist | `;
+        message += `Product ${product.id} doesn"t exist | `;
       }
     });
     const userExists = usersService.get(sale.userId);
     if (!userExists) {
-      message += `User ${sale.userId} doesn't exist`;
+      message += `User ${sale.userId} doesn"t exist`;
     }
     return message;
   }

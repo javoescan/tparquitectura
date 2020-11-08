@@ -1,23 +1,30 @@
-const express = require('express');
-const validator = require('../helpers/validator');
+const express = require("express");
+const validator = require("../helpers/validator");
 const validateParams = validator.validateParams;
 const router = express.Router();
 
-const usersService = require('../services/users');
+const usersService = require("../services/users");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const users = usersService.getAll();
   res.send(users);
 });
 
-router.get('/:id', (req, res) => {
+router.get("/:id", (req, res) => {
   const user = usersService.get(req.params.id);
   user ? 
     res.send(user)
     : res.status(400).send("User not found");
 });
 
-router.post('', (req, res) => {
+router.get("/:id", (req, res) => {
+  const user = usersService.get(req.params.id);
+  user ? 
+    res.send(user)
+    : res.status(400).send("User not found");
+});
+
+router.post("", (req, res) => {
   if (!req.body || !validateParams(req.body, usersService.fields)) {
     res.status(400).send("Params not defined");
     return;
@@ -33,7 +40,7 @@ router.post('', (req, res) => {
   created ? res.send(created) : res.status(400).send("User already exists");
 });
 
-router.put('/:id', (req, res) => {
+router.put("/:id", (req, res) => {
   if (!req.params.id || !req.body || !validateParams(req.body, usersService.fields)) {
     res.status(400).send("Params not defined");
     return;
@@ -50,7 +57,7 @@ router.put('/:id', (req, res) => {
   updated ? res.send(updated) : res.status(400).send("Bad request");
 });
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
   if (!req.params.id) {
     res.status(400).send("Params not defined");
     return;
