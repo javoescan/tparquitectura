@@ -26,13 +26,21 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/user/:userId", (req, res) => {
-  const sales = salesService.getAllByUser(req.params.userId);
-  res.send(sales);
+  try {
+    const sales = salesService.getAllByUser(req.params.userId);
+    res.send(sales);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.get("/product/:productId", (req, res) => {
-  const sales = salesService.getAllByProduct(req.params.productId);
-  res.send(sales);
+  try {
+    const sales = salesService.getAllByProduct(req.params.productId);
+    res.send(sales);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.get("/user/:userId/comissions", (req, res) => {

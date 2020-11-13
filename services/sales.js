@@ -20,10 +20,18 @@ class SalesService {
   }
 
   getAllByUser = userId => {
+    const userExists = usersService.get(userId);
+    if (!userExists) {
+      throw new Error("User does not exist");
+    }
     return sales.filter(sale => sale.userId === userId);
   }
 
   getAllByProduct = productId => {
+    const productExists = productsService.get(productId);
+    if (!productExists) {
+      throw new Error("Product does not exist");
+    }
     return sales.filter(sale => {
       let matches = false;
       sale.products.forEach(product => {
