@@ -10,7 +10,11 @@ class ProductsService {
   }
 
   get = id => {
-    return products.find(product => product.id === id);
+    const product = products.find(product => product.id === id);
+    if (!product) {
+      throw new Error("Product does not exist");
+    }
+    return product;
   }
 
   create = product => {
@@ -23,7 +27,7 @@ class ProductsService {
   update = product => {
     const productIndex = products.findIndex(pProduct => pProduct.id === product.id);
     if (productIndex === -1) {
-      return null;
+      throw new Error("Product does not exist");
     }
     products[productIndex] = product;
     fs.writeFileSync("mocks/products.json", JSON.stringify(products));
@@ -33,7 +37,7 @@ class ProductsService {
   patch = product => {
     const productIndex = products.findIndex(pProduct => pProduct.id === product.id);
     if (productIndex === -1) {
-      return null;
+      throw new Error("Product does not exist");
     }
     Object.keys(products[productIndex]).forEach(key => {
       if (product[key]) {
@@ -47,7 +51,7 @@ class ProductsService {
   delete = id => {
     const productIndex = products.findIndex(pProduct => pProduct.id === id);
     if (productIndex === -1) {
-      return null;
+      throw new Error("Product does not exist");
     }
     products.splice(productIndex, 1);
     fs.writeFileSync("mocks/products.json", JSON.stringify(products));

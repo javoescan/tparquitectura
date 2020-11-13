@@ -10,10 +10,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const product = productsService.get(req.params.id);
-  product ? 
-    res.send(product)
-    : res.status(400).send("product not found");
+  try {
+    const product = productsService.get(req.params.id);
+    res.send(product);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.post("", (req, res) => {
@@ -26,8 +28,12 @@ router.post("", (req, res) => {
     description: req.body.description,
     price: req.body.price
   };
-  const created = productsService.create(product);
-  created ? res.send(created) : res.status(400).send("Product already exists");
+  try {
+    const created = productsService.create(product);
+    res.send(created);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.put("/:id", (req, res) => {
@@ -41,8 +47,12 @@ router.put("/:id", (req, res) => {
     description: req.body.description,
     price: req.body.price
   };
-  const updated = productsService.update(product);
-  updated ? res.send(updated) : res.status(400).send("Bad request");
+  try {
+    const updated = productsService.update(product);
+    res.send(updated);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.patch("/:id", (req, res) => {
@@ -56,8 +66,12 @@ router.patch("/:id", (req, res) => {
     description: req.body.description,
     price: req.body.price
   };
-  const patched = productsService.patch(product);
-  patched ? res.send(patched) : res.status(400).send("Bad request");
+  try {
+    const patched = productsService.patch(product);
+    res.send(patched);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.delete("/:id", (req, res) => {
@@ -65,8 +79,12 @@ router.delete("/:id", (req, res) => {
     res.status(400).send("Params not defined");
     return;
   }
-  const deleted = productsService.delete(req.params.id);
-  deleted ? res.send("Deleted") : res.status(400).send("Bad request");
+  try {
+    productsService.delete(req.params.id);
+    res.send("Deleted " + req.params.id);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 module.exports = router;

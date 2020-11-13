@@ -10,17 +10,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const user = usersService.get(req.params.id);
-  user ? 
-    res.send(user)
-    : res.status(400).send("User not found");
-});
-
-router.get("/:id", (req, res) => {
-  const user = usersService.get(req.params.id);
-  user ? 
-    res.send(user)
-    : res.status(400).send("User not found");
+  try {
+    const user = usersService.get(req.params.id);
+    res.send(user);
+  } catch(e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.post("", (req, res) => {
@@ -35,8 +30,12 @@ router.post("", (req, res) => {
     document: req.body.document,
     role: req.body.role,
   };
-  const created = usersService.create(user);
-  created ? res.send(created) : res.status(400).send("User already exists");
+  try {
+    const createdUser = usersService.create(user);
+    res.send(createdUser);
+  } catch(e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.put("/:id", (req, res) => {
@@ -52,8 +51,12 @@ router.put("/:id", (req, res) => {
     document: req.body.document,
     role: req.body.role,
   };
-  const updated = usersService.update(user);
-  updated ? res.send(updated) : res.status(400).send("Bad request");
+  try {
+    const updatedUser = usersService.update(user);
+    res.send(updatedUser);
+  } catch(e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.patch("/:id", (req, res) => {
@@ -69,8 +72,12 @@ router.patch("/:id", (req, res) => {
     document: req.body.document,
     role: req.body.role,
   };
-  const patched = usersService.patch(user);
-  patched ? res.send(patched) : res.status(400).send("Bad request");
+  try {
+    const patchedUser = usersService.patch(user);
+    res.send(patchedUser);
+  } catch(e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.delete("/:id", (req, res) => {
@@ -78,8 +85,12 @@ router.delete("/:id", (req, res) => {
     res.status(400).send("Params not defined");
     return;
   }
-  const deleted = usersService.delete(req.params.id);
-  deleted ? res.send("Deleted") : res.status(400).send("Bad request");
+  try {
+    usersService.delete(req.params.id);
+    res.send("Deleted " + req.params.id);
+  } catch(e) {
+    res.status(400).send(e.message);
+  }
 });
 
 module.exports = router;

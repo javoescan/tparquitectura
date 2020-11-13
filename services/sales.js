@@ -36,13 +36,17 @@ class SalesService {
   }
 
   get = id => {
-    return sales.find(sale => sale.id === id);
+    const sale = sales.find(sale => sale.id === id);
+    if (!sale) {
+      throw new Error("Sale does not exist");
+    }
+    return sale;
   }
 
   getComissionsByUser = (userId, fromDate, toDate) => {
     const userExists = usersService.get(userId);
     if (!userExists) {
-      return null;
+      throw new Error("User does not exist");
     }
     let sales = [];
     if (fromDate && toDate) {
@@ -61,47 +65,37 @@ class SalesService {
   create = sale => {
     const dataErrorMessage = this.dataErrorMessage(sale);
     if (dataErrorMessage) {
-      return {
-        message: dataErrorMessage,
-      }
+      throw new Error(dataErrorMessage);
     }
     sale.id = uuidv4();
     sales.push(sale);
     fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
-    return {
-      sale,
-    };
+    return sale;
   }
 
   update = sale => {
     const saleIndex = sales.findIndex(pSale => pSale.id === sale.id);
     if (saleIndex === -1) {
-      return null;
+      throw new Error("Sale does not exist");
     }
     const dataErrorMessage = this.dataErrorMessage(sale);
     if (dataErrorMessage) {
-      return {
-        message: dataErrorMessage,
-      };
+      throw new Error(dataErrorMessage);
     }
     sales[saleIndex] = sale;
     fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
-    return {
-      sale,
-    };
+    return sale;
   }
 
   patch = sale => {
     const saleIndex = sales.findIndex(pSale => pSale.id === sale.id);
     if (saleIndex === -1) {
-      return null;
+      throw new Error("Sale does not exist");
     }
     if (sale.products && sale.user) {
       const dataErrorMessage = this.dataErrorMessage(sale);
       if (dataErrorMessage) {
-        return {
-          message: dataErrorMessage,
-        };
+        throw new Error(dataErrorMessage);
       }
     }
     Object.keys(sales[saleIndex]).forEach(key => {
@@ -110,15 +104,13 @@ class SalesService {
       }
     })
     fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
-    return {
-      sale,
-    };
+    return sale;
   }
 
   delete = id => {
     const saleIndex = sales.findIndex(pSale => pSale.id === id);
     if (saleIndex === -1) {
-      return null;
+      throw new Error("Sale does not exist");
     }
     sales.splice(saleIndex, 1);
     fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));

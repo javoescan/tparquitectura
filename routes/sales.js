@@ -17,10 +17,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  const sale = salesService.get(req.params.id);
-  sale ? 
+  try {
+    const sale = salesService.get(req.params.id);
     res.send(sale)
-    : res.status(400).send("Sale not found");
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.get("/user/:userId", (req, res) => {
@@ -36,8 +38,14 @@ router.get("/product/:productId", (req, res) => {
 router.get("/user/:userId/comissions", (req, res) => {
   const fromDate = req.query.from_date;
   const toDate = req.query.to_date;
-  const comissions = salesService.getComissionsByUser(req.params.userId, fromDate, toDate);
-  comissions ? res.send(comissions.toString()) : res.status(400).send("User doesn't exist");
+  try {
+    const comissions = salesService.getComissionsByUser(req.params.userId, fromDate, toDate);
+    res.send({
+      comissions,
+    });
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.post("", (req, res) => {
@@ -51,8 +59,12 @@ router.post("", (req, res) => {
     date: req.body.date,
     totalPrice: req.body.totalPrice,
   };
-  const created = salesService.create(sale);
-  created.sale ? res.send(created.sale) : res.status(400).send(created.message);
+  try {
+    const created = salesService.create(sale);
+    res.send(created)
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.put("/:id", (req, res) => {
@@ -67,10 +79,12 @@ router.put("/:id", (req, res) => {
     date: req.body.date,
     totalPrice: req.body.totalPrice,
   };
-  const updated = salesService.update(sale);
-  updated ?
-    updated.sale ? res.send(updated.sale) : res.status(400).send(updated.message)
-    : res.status(400).send("Sale doesn't exist");
+  try {
+    const updated = salesService.update(sale);
+    res.send(updated);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.patch("/:id", (req, res) => {
@@ -85,10 +99,12 @@ router.patch("/:id", (req, res) => {
     date: req.body.date,
     totalPrice: req.body.totalPrice,
   };
-  const patched = salesService.patch(sale);
-  patched ?
-    patched.sale ? res.send(patched.sale) : res.status(400).send(patched.message)
-    : res.status(400).send("Sale doesn't exist");
+  try {
+    const patched = salesService.patch(sale);
+    res.send(patched);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 router.delete("/:id", (req, res) => {
@@ -96,8 +112,12 @@ router.delete("/:id", (req, res) => {
     res.status(400).send("Params not defined");
     return;
   }
-  const deleted = salesService.delete(req.params.id);
-  deleted ? res.send("Deleted") : res.status(400).send("Bad request");
+  try {
+    salesService.delete(req.params.id);
+    res.send("Deleted " + req.params.id);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 module.exports = router;

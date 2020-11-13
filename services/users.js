@@ -10,13 +10,17 @@ class UsersService {
   }
 
   get = id => {
-    return users.find(user => user.id === id);
+    const user = users.find(user => user.id === id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    return user;
   }
 
   create = user => {
     const existing = users.find(pUser => pUser.email === user.email);
     if (existing) {
-      return null;
+      throw new Error("User already exists");
     }
     user.id = uuidv4();
     users.push(user);
@@ -27,7 +31,7 @@ class UsersService {
   update = user => {
     const userIndex = users.findIndex(pUser => pUser.id === user.id);
     if (userIndex === -1) {
-      return null;
+      throw new Error("User not found");
     }
     users[userIndex] = user;
     fs.writeFileSync("mocks/users.json", JSON.stringify(users));
@@ -37,7 +41,7 @@ class UsersService {
   patch = user => {
     const userIndex = users.findIndex(pUser => pUser.id === user.id);
     if (userIndex === -1) {
-      return null;
+      throw new Error("User not found");
     }
     Object.keys(users[userIndex]).forEach(key => {
       if (user[key]) {
@@ -51,7 +55,7 @@ class UsersService {
   delete = id => {
     const userIndex = users.findIndex(pUser => pUser.id === id);
     if (userIndex === -1) {
-      return null;
+      throw new Error("User not found");
     }
     users.splice(userIndex, 1);
     fs.writeFileSync("mocks/users.json", JSON.stringify(users));
