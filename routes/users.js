@@ -1,6 +1,5 @@
 const express = require("express");
-const validator = require("../helpers/validator");
-const validateParams = validator.validateParams;
+const { validateParams, validatePatchParams } = require('../helpers/validator');
 const router = express.Router();
 
 const usersService = require("../services/users");
@@ -31,8 +30,8 @@ router.post("", (req, res) => {
   }
   const user = {
     email: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     document: req.body.document,
     role: req.body.role,
   };
@@ -48,13 +47,30 @@ router.put("/:id", (req, res) => {
   const user = {
     id: req.params.id,
     email: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     document: req.body.document,
     role: req.body.role,
   };
   const updated = usersService.update(user);
   updated ? res.send(updated) : res.status(400).send("Bad request");
+});
+
+router.patch("/:id", (req, res) => {
+  if (!req.body || !validatePatchParams(req.body, usersService.fields)) {
+    res.status(400).send("Params not defined");
+    return;
+  }
+  const user = {
+    id: req.params.id,
+    email: req.body.email,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    document: req.body.document,
+    role: req.body.role,
+  };
+  const patched = usersService.patch(user);
+  patched ? res.send(patched) : res.status(400).send("Bad request");
 });
 
 router.delete("/:id", (req, res) => {

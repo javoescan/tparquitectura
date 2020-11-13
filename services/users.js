@@ -3,7 +3,7 @@ const fs = require("fs");
 const users = require("../mocks/users.json");
 
 class UsersService {
-  fields = ["email", "firstName", "lastName", "document", "role"];
+  fields = ["email", "firstname", "lastname", "document", "role"];
 
   getAll = () => {
     return users;
@@ -32,6 +32,20 @@ class UsersService {
     users[userIndex] = user;
     fs.writeFileSync("mocks/users.json", JSON.stringify(users));
     return user;
+  }
+
+  patch = user => {
+    const userIndex = users.findIndex(pUser => pUser.id === user.id);
+    if (userIndex === -1) {
+      return null;
+    }
+    Object.keys(users[userIndex]).forEach(key => {
+      if (user[key]) {
+        users[userIndex][key] = user[key];
+      }
+    })
+    fs.writeFileSync("mocks/users.json", JSON.stringify(users));
+    return users[userIndex];
   }
 
   delete = id => {

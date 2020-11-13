@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"javoescan@gmail.com\",\n\t\"firstName\": \"Javier\",\n\t\"lastName\": \"Escandarani\",\n\t\"document\": \"41758557\",\n\t\"role\": \"1\"\n}"
+							"raw": "{\n\t\"email\": \"javoescan@gmail.com\",\n\t\"firstname\": \"Javier\",\n\t\"lastname\": \"Escandarani\",\n\t\"document\": \"41758557\",\n\t\"role\": \"1\"\n}"
 						},
 						"description": ""
 					},
@@ -67,7 +67,27 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"email\": \"pepegonzalez@gmail.com\",\n\t\"firstName\": \"Pepe\",\n\t\"lastName\": \"Gonzalez\",\n\t\"document\": \"152343545\",\n\t\"role\": \"1\"\n}"
+							"raw": "{\n\t\"id\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"email\": \"pepegonzalez@gmail.com\",\n\t\"firstname\": \"Pepe\",\n\t\"lastname\": \"Gonzalez\",\n\t\"document\": \"152343545\",\n\t\"role\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH USER",
+					"request": {
+						"url": "http://localhost:3000/users/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstname\": \"Pepe2\",\n\t\"lastname\": \"Gonzalez2\"\n}"
 						},
 						"description": ""
 					},
@@ -156,6 +176,26 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"name\": \"Producto Actualizado\",\n\t\"description\": \"Mi nuevo producto\",\n\t\"price\": 500\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH PRODUCT",
+					"request": {
+						"url": "http://localhost:3000/products/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Producto Actualizado2\"\n}"
 						},
 						"description": ""
 					},
@@ -296,14 +336,17 @@
 					"name": "GET COMISSION",
 					"request": {
 						"url": {
-							"raw": "http://localhost:3000/sales?from_date=\"2020-11-07\"&to_date=\"2020-11-09\"",
+							"raw": "http://localhost:3000/sales/user/aaaaaa-bbbbbbb-ccccccc-ddddddd/comissions?from_date=\"2020-11-07\"&to_date=\"2020-11-09\"",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"sales"
+								"sales",
+								"user",
+								"aaaaaa-bbbbbbb-ccccccc-ddddddd",
+								"comissions"
 							],
 							"query": [
 								{
@@ -392,6 +435,26 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"products\": [{\"id\":\"aaaaaa-bbbbbbb-ccccccc-ddddddd\", \"price\": 50}],\n\t\"userId\": \"aaaaaa-bbbbbbb-ccccccc-ddddddd\",\n\t\"date\": 1604855534545,\n\t\"totalPrice\": 100\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH SALE",
+					"request": {
+						"url": "http://localhost:3000/sales/aaaaaa-bbbbbbb-ccccccc-ddddddd",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"totalPrice\": 250\n}"
 						},
 						"description": ""
 					},

@@ -1,7 +1,5 @@
 const express = require("express");
-const validator = require("../helpers/validator");
-const validateParams = validator.validateParams;
-const validateCollectionParams = validator.validateCollectionParams;
+const { validateParams, validateCollectionParams, validatePatchParams } = require('../helpers/validator');
 const router = express.Router();
 
 const salesService = require("../services/sales");
@@ -72,6 +70,24 @@ router.put("/:id", (req, res) => {
   const updated = salesService.update(sale);
   updated ?
     updated.sale ? res.send(updated.sale) : res.status(400).send(updated.message)
+    : res.status(400).send("Sale doesn't exist");
+});
+
+router.patch("/:id", (req, res) => {
+  if (!req.body || !validatePatchParams(req.body, salesService.fields)) {
+    res.status(400).send("Params not defined");
+    return;
+  }
+  const sale = {
+    id: req.params.id,
+    products: req.body.products,
+    userId: req.body.userId,
+    date: req.body.date,
+    totalPrice: req.body.totalPrice,
+  };
+  const patched = salesService.patch(sale);
+  patched ?
+    patched.sale ? res.send(patched.sale) : res.status(400).send(patched.message)
     : res.status(400).send("Sale doesn't exist");
 });
 

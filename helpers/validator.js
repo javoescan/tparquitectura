@@ -8,6 +8,16 @@ const validateParams = (obj, keys) => {
   return isValid;
 };
 
+const validatePatchParams = (obj, keys) => {
+  let isValid = false;
+  keys.forEach(key => {
+    if (obj[key]) {
+      isValid = true;
+    }
+  });
+  return isValid;
+};
+
 const validateCollectionParams = (collection, keys) => {
   let isValid = true;
   if (!collection.length) {
@@ -26,4 +36,5 @@ const validateCollectionParams = (collection, keys) => {
 module.exports = {
   validateParams,
   validateCollectionParams,
+  validatePatchParams,
 };

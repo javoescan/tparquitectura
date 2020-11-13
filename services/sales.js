@@ -91,6 +91,30 @@ class SalesService {
     };
   }
 
+  patch = sale => {
+    const saleIndex = sales.findIndex(pSale => pSale.id === sale.id);
+    if (saleIndex === -1) {
+      return null;
+    }
+    if (sale.products && sale.user) {
+      const dataErrorMessage = this.dataErrorMessage(sale);
+      if (dataErrorMessage) {
+        return {
+          message: dataErrorMessage,
+        };
+      }
+    }
+    Object.keys(sales[saleIndex]).forEach(key => {
+      if (sale[key]) {
+        sales[saleIndex][key] = sale[key];
+      }
+    })
+    fs.writeFileSync("mocks/sales.json", JSON.stringify(sales));
+    return {
+      sale,
+    };
+  }
+
   delete = id => {
     const saleIndex = sales.findIndex(pSale => pSale.id === id);
     if (saleIndex === -1) {

@@ -30,6 +30,20 @@ class ProductsService {
     return product;
   }
 
+  patch = product => {
+    const productIndex = products.findIndex(pProduct => pProduct.id === product.id);
+    if (productIndex === -1) {
+      return null;
+    }
+    Object.keys(products[productIndex]).forEach(key => {
+      if (product[key]) {
+        products[productIndex][key] = product[key];
+      }
+    })
+    fs.writeFileSync("mocks/products.json", JSON.stringify(products));
+    return product;
+  }
+
   delete = id => {
     const productIndex = products.findIndex(pProduct => pProduct.id === id);
     if (productIndex === -1) {

@@ -1,6 +1,5 @@
 const express = require("express");
-const validator = require("../helpers/validator");
-const validateParams = validator.validateParams;
+const { validateParams, validatePatchParams } = require('../helpers/validator');
 const router = express.Router();
 
 const productsService = require("../services/products");
@@ -44,6 +43,21 @@ router.put("/:id", (req, res) => {
   };
   const updated = productsService.update(product);
   updated ? res.send(updated) : res.status(400).send("Bad request");
+});
+
+router.patch("/:id", (req, res) => {
+  if (!req.body || !validatePatchParams(req.body, productsService.fields)) {
+    res.status(400).send("Params not defined");
+    return;
+  }
+  const product = {
+    id: req.params.id,
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price
+  };
+  const patched = productsService.patch(product);
+  patched ? res.send(patched) : res.status(400).send("Bad request");
 });
 
 router.delete("/:id", (req, res) => {
